@@ -1,12 +1,13 @@
 'use strict';
 
-function Project(name, date, desc, img) {
-  this.name = name;
-  this.date = date;
-  this.desc = desc;
-  this.img = img;
-}
+var renderer = { }
 
-Project.prototype.render = function() {
-
+renderer.initNav = function() {
+  $('.section-toggle').on('click', 'li', function(e) {
+    e.preventDefault();
+    $('.tab-section').hide();
+    $('#' + $(this).name).show();
+  });
 };
+
+renderer.initNav();
