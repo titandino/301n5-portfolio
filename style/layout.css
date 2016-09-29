@@ -1,0 +1,40 @@
+.tab-section {
+
+}
+
+.skills-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.skills-list ul li {
+  display: none;
+}
+
+.summary-block {
+  display: inline-block;
+  width: 45%;
+}
+
+.project-block {
+  flex-flow: row;
+}
+
+.project-block img {
+  width: 100%;
+  height: auto;
+}
+
+#projects {
+  display: flex;
+  align-content: stretch;
+  flex-wrap: wrap;
+}
+
+.proj-body-container {
+
+}
+
+.project-body {
+  display: none;
+}

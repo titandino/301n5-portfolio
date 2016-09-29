@@ -1,12 +1,32 @@
 'use strict';
 
-function Project(name, date, desc, img) {
-  this.name = name;
-  this.date = date;
-  this.desc = desc;
-  this.img = img;
-}
+var renderer = { };
 
-Project.prototype.render = function() {
-
+renderer.initNav = function() {
+  $('.section-toggle').on('click', function(e) {
+    e.preventDefault();
+    $('.tab-section').hide();
+    $('#' + $(this).data('tab')).fadeIn(500);
+  });
+  $('.section-toggle:first').trigger('click');
 };
+
+renderer.initSkillsLists = function() {
+  $('.skills-list').on('click', 'ul', function(e) {
+    e.preventDefault();
+    $(this).find('li').toggle(300);
+  });
+};
+
+renderer.initProjectFlips = function() {
+  $('.proj-body-container').on('click', function() {
+    $(this).find('.project-body').toggle();
+    $(this).find('img').toggle();
+  });
+};
+
+$(function() {
+  renderer.initNav();
+  renderer.initSkillsLists();
+  renderer.initProjectFlips();
+});
