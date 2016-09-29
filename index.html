@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style/normalize.css">
+    <link rel="stylesheet" href="style/base.css">
+    <link rel="stylesheet" href="style/layout.css">
+    <link rel="stylesheet" href="style/modules.css">
     <title>Trenton Kress</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   </head>
@@ -12,8 +15,8 @@
     </header>
     <nav>
       <ul>
-        <li><a class="section-toggle" name="summary" href="#">Summary</a></li>
-        <li><a class="section-toggle" name="projects" href="#">Projects</a></li>
+        <li><a class="section-toggle" data-tab="summary" href="#">Summary</a></li>
+        <li><a class="section-toggle" data-tab="projects" href="#">Projects</a></li>
         <li><a href="http://github.com/titandino">GitHub</a></li>
         <li><a href="https://www.linkedin.com/in/trenton-kress-909794104">LinkedIn</a></li>
       </ul>
@@ -33,7 +36,7 @@
         </section>
       </section>
       <section class="tab-section" id="projects">
-        <article class="project-template">
+        <article class="project-block template">
           <h3>Title</h3>
           <time>September 27th 2016</time>
           <section class="project-body">
