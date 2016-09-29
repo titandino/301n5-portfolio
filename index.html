@@ -12,11 +12,13 @@
   <script script id="project-template" type="text/x-handlebars-template">
     <article class="project-block">
       <h3>{{name}}</h3>
-      <time>{{date}}</time>
-      <section class="project-body">
+      <time>{{date}} (Click image to show description)</time>
+      <div class="proj-body-container">
         <img src="{{img}}" alt=""/>
-        {{{desc}}}
-      </section>
+        <section class="project-body">
+          {{{desc}}}
+        </section>
+      </div>
     </article>
   </script>
 </head>

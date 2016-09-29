@@ -12,11 +12,21 @@ renderer.initNav = function() {
 };
 
 renderer.initSkillsLists = function() {
-  $('.skills-list ul').on('click', function(e) {
+  $('.skills-list').on('click', 'ul', function(e) {
     e.preventDefault();
     $(this).find('li').toggle(300);
   });
 };
 
-renderer.initNav();
-renderer.initSkillsLists();
+renderer.initProjectFlips = function() {
+  $('.proj-body-container').on('click', function() {
+    $(this).find('.project-body').toggle();
+    $(this).find('img').toggle();
+  });
+};
+
+$(function() {
+  renderer.initNav();
+  renderer.initSkillsLists();
+  renderer.initProjectFlips();
+});

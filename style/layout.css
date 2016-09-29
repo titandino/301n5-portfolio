@@ -17,9 +17,24 @@
 }
 
 .project-block {
-  width: 100%;
+  flex-flow: row;
 }
 
-.template {
+.project-block img {
+  width: 100%;
+  height: auto;
+}
+
+#projects {
+  display: flex;
+  align-content: stretch;
+  flex-wrap: wrap;
+}
+
+.proj-body-container {
+
+}
+
+.project-body {
   display: none;
 }
