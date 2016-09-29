@@ -2,6 +2,15 @@
 
 }
 
+.skills-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.skills-list ul li {
+  display: none;
+}
+
 .summary-block {
   display: inline-block;
   width: 45%;

@@ -1,53 +1,95 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="style/normalize.css">
-    <link rel="stylesheet" href="style/base.css">
-    <link rel="stylesheet" href="style/layout.css">
-    <link rel="stylesheet" href="style/modules.css">
-    <title>Trenton Kress</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-  </head>
-  <body>
-    <header>
-      <h1>Trenton Kress</h1>
-    </header>
-    <nav>
-      <ul>
-        <li><a class="section-toggle" data-tab="summary" href="#">Summary</a></li>
-        <li><a class="section-toggle" data-tab="projects" href="#">Projects</a></li>
-        <li><a href="http://github.com/titandino">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/trenton-kress-909794104">LinkedIn</a></li>
-      </ul>
-    </nav>
-    <main>
-      <section class="tab-section" id="summary">
-        <section class="summary-block">
-          <h2>About Me</h2>
-          <p>I like cats.</p>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style/normalize.css">
+  <link rel="stylesheet" href="style/base.css">
+  <link rel="stylesheet" href="style/layout.css">
+  <link rel="stylesheet" href="style/modules.css">
+  <title>Trenton Kress</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js" charset="utf-8"></script>
+  <script script id="project-template" type="text/x-handlebars-template">
+    <article class="project-block">
+      <h3>{{name}}</h3>
+      <time>{{date}}</time>
+      <section class="project-body">
+        <img src="{{img}}" alt=""/>
+        {{{desc}}}
+      </section>
+    </article>
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Trenton Kress</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a class="section-toggle" data-tab="summary" href="#">Summary</a></li>
+      <li><a class="section-toggle" data-tab="projects" href="#">Projects</a></li>
+      <li><a href="http://github.com/titandino" target="_blank">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/trenton-kress-909794104" target="_blank">LinkedIn</a></li>
+    </ul>
+  </nav>
+  <main>
+    <section class="tab-section" id="summary">
+      <section class="summary-block">
+        <h2>About Me</h2>
+        <p>I am a passionate gamer and developer who found a strong interest in game programming during middle school and have been pursuing it ever since. I have self taught most of my programming knowledge in Java, but have taken quite a few classes during high school and my small college excursion as well. My largest goal right now is to secure a development position at a company that can revolutionize the gaming industry and create innovative technology.</p>
+      </section>
+      <section class="summary-block">
+        <h2>Skills</h2>
+        <section class="skills-list">
+          <ul><a href="#">Languages</a>
+            <li>Java</li>
+            <li>C++</li>
+            <li>C</li>
+            <li>C#</li>
+            <li>GLSL</li>
+            <li>JavaScript</li>
+          </ul>
         </section>
-        <section class="summary-block">
-          <h2>Skills</h2>
-          <ul>
-            <li>Petting cats.</li>
-            <li>Feeding cats.</li>
+        <section class="skills-list">
+          <ul><a href="#">Programming Concepts</a>
+            <li>Object Oriented Design</li>
+            <li>Debugging</li>
+            <li>Optimization</li>
+            <li>Threading</li>
+            <li>Version Control</li>
+            <li>Graphics</li>
+            <li>Shaders</li>
+          </ul>
+        </section>
+        <section class="skills-list">
+          <ul><a href="#">APIs</a>
+            <li>Java Platform SE (6/7/8)</li>
+            <li>C/C++ STL</li>
+            <li>FMOD</li>
+            <li>OpenGL</li>
+            <li>LWJGL</li>
+            <li>MySQL Connector Java</li>
+            <li>Netty (Java)</li>
+          </ul>
+        </section>
+        <section class="skills-list">
+          <ul><a href="#">Tools</a>
+            <li>Eclipse</li>
+            <li>Visual Studio</li>
+            <li>Git</li>
+            <li>Tortoise SVN</li>
+            <li>Doxygen</li>
+            <li>PuTTY</li>
           </ul>
         </section>
       </section>
-      <section class="tab-section" id="projects">
-        <article class="project-block template">
-          <h3>Title</h3>
-          <time>September 27th 2016</time>
-          <section class="project-body">
-            <img src="" alt="" />
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          </section>
-        </article>
-      </section>
-    </main>
-    <footer></footer>
-    <script src="js/projects.js" charset="utf-8"></script>
-    <script src="js/script.js" charset="utf-8"></script>
-  </body>
+    </section>
+    <section class="tab-section" id="projects">
+
+    </section>
+  </main>
+  <footer></footer>
+  <script src="js/projects.js" charset="utf-8"></script>
+  <script src="js/script.js" charset="utf-8"></script>
+</body>
 </html>
