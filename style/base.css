@@ -5,9 +5,11 @@ body {
 }
 
 main, header, footer, nav {
-  width: 80%;
-  margin: 0 auto;
   background-color: #888;
+  padding: 0.5em;
+  border: 0.3em;
+  border-style: solid;
+  border-color: #444;
 }
 
 nav ul {
