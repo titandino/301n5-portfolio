@@ -8,6 +8,26 @@ $secondary: #0D9263;
 $tertiary: #4ABA91;
 $font: #D4CE46;
 
+@font-face {
+  font-family: "Triforce";
+  src: url('../font/Triforce.eot');
+  src: url('../font/Triforce.ttf');
+}
+
+h1 {
+  font-family: "Triforce";
+  font-weight: normal;
+  font-size: 3em;
+  margin: 0;
+}
+
+h2 {
+  font-family: "Triforce";
+  font-weight: normal;
+  font-size: 2em;
+  margin: 0;
+}
+
 body {
   background-color: $bg;
   width: 100%;

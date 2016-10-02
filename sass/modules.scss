@@ -8,3 +8,9 @@
     margin: 0 auto;
   }
 }
+
+@media only screen and (min-width: 900px) {
+  .flex-block {
+    width: 42%;
+  }
+}
