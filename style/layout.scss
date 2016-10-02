@@ -1,14 +1,20 @@
+//main: modules.scss
+
+@import 'base';
+
 .tab-section {
 
 }
 
 .skills-list ul {
+  background-color: $secondary;
+  box-shadow: 1px 1px 1px 1px;
   list-style: none;
   padding: 0;
-}
 
-.skills-list ul li {
-  display: none;
+  li {
+    display: none;
+  }
 }
 
 .summary-block {
@@ -18,11 +24,11 @@
 .project-block {
   flex-flow: row;
   width: 100%;
-}
 
-.project-block img {
-  width: 100%;
-  height: auto;
+  img {
+    width: 100%;
+    height: auto;
+  }
 }
 
 #projects {

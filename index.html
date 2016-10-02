@@ -3,10 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style/normalize.css">
-  <link rel="stylesheet" href="style/base.css">
-  <link rel="stylesheet" href="style/layout.css">
-  <link rel="stylesheet" href="style/modules.css">
+  <link rel="stylesheet" href="style/modules.min.css">
   <title>Trenton Kress</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js" charset="utf-8"></script>
@@ -24,74 +21,76 @@
   </script>
 </head>
 <body>
-  <header>
-    <h1>Trenton Kress</h1>
-  </header>
-  <nav>
-    <ul>
-      <li><a class="section-toggle" data-tab="summary" href="#">Summary</a></li>
-      <li><a class="section-toggle" data-tab="projects" href="#">Projects</a></li>
-      <li><a href="http://github.com/titandino" target="_blank">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/trenton-kress-909794104" target="_blank">LinkedIn</a></li>
-    </ul>
-  </nav>
-  <main>
-    <section class="tab-section" id="summary">
-      <section class="summary-block">
-        <h2>About Me</h2>
-        <p>I am a passionate gamer and developer who found a strong interest in game programming during middle school and have been pursuing it ever since. I have self taught most of my programming knowledge in Java, but have taken quite a few classes during high school and my small college excursion as well. My largest goal right now is to secure a development position at a company that can revolutionize the gaming industry and create innovative technology.</p>
+  <div class="main-container">
+    <header>
+      <h1>Trenton Kress</h1>
+    </header>
+    <nav>
+      <ul>
+        <li><a class="section-toggle" data-tab="summary" href="#">Summary</a></li>
+        <li><a class="section-toggle" data-tab="projects" href="#">Projects</a></li>
+        <li><a href="http://github.com/titandino" target="_blank">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/trenton-kress-909794104" target="_blank">LinkedIn</a></li>
+      </ul>
+    </nav>
+    <main>
+      <section class="tab-section" id="summary">
+        <section class="summary-block">
+          <h2>About Me</h2>
+          <p>I am a passionate gamer and developer who found a strong interest in game programming during middle school and have been pursuing it ever since. I have self taught most of my programming knowledge in Java, but have taken quite a few classes during high school and my small college excursion as well. My largest goal right now is to secure a development position at a company that can revolutionize the gaming industry and create innovative technology.</p>
+        </section>
+        <section class="summary-block">
+          <h2>Skills</h2>
+          <section class="skills-list">
+            <ul><a href="#">Languages</a>
+              <li>Java</li>
+              <li>C++</li>
+              <li>C</li>
+              <li>C#</li>
+              <li>GLSL</li>
+              <li>JavaScript</li>
+            </ul>
+          </section>
+          <section class="skills-list">
+            <ul><a href="#">Programming Concepts</a>
+              <li>Object Oriented Design</li>
+              <li>Debugging</li>
+              <li>Optimization</li>
+              <li>Threading</li>
+              <li>Version Control</li>
+              <li>Graphics</li>
+              <li>Shaders</li>
+            </ul>
+          </section>
+          <section class="skills-list">
+            <ul><a href="#">APIs</a>
+              <li>Java Platform SE (6/7/8)</li>
+              <li>C/C++ STL</li>
+              <li>FMOD</li>
+              <li>OpenGL</li>
+              <li>LWJGL</li>
+              <li>MySQL Connector Java</li>
+              <li>Netty (Java)</li>
+            </ul>
+          </section>
+          <section class="skills-list">
+            <ul><a href="#">Tools</a>
+              <li>Eclipse</li>
+              <li>Visual Studio</li>
+              <li>Git</li>
+              <li>Tortoise SVN</li>
+              <li>Doxygen</li>
+              <li>PuTTY</li>
+            </ul>
+          </section>
+        </section>
       </section>
-      <section class="summary-block">
-        <h2>Skills</h2>
-        <section class="skills-list">
-          <ul><a href="#">Languages</a>
-            <li>Java</li>
-            <li>C++</li>
-            <li>C</li>
-            <li>C#</li>
-            <li>GLSL</li>
-            <li>JavaScript</li>
-          </ul>
-        </section>
-        <section class="skills-list">
-          <ul><a href="#">Programming Concepts</a>
-            <li>Object Oriented Design</li>
-            <li>Debugging</li>
-            <li>Optimization</li>
-            <li>Threading</li>
-            <li>Version Control</li>
-            <li>Graphics</li>
-            <li>Shaders</li>
-          </ul>
-        </section>
-        <section class="skills-list">
-          <ul><a href="#">APIs</a>
-            <li>Java Platform SE (6/7/8)</li>
-            <li>C/C++ STL</li>
-            <li>FMOD</li>
-            <li>OpenGL</li>
-            <li>LWJGL</li>
-            <li>MySQL Connector Java</li>
-            <li>Netty (Java)</li>
-          </ul>
-        </section>
-        <section class="skills-list">
-          <ul><a href="#">Tools</a>
-            <li>Eclipse</li>
-            <li>Visual Studio</li>
-            <li>Git</li>
-            <li>Tortoise SVN</li>
-            <li>Doxygen</li>
-            <li>PuTTY</li>
-          </ul>
-        </section>
-      </section>
-    </section>
-    <section class="tab-section" id="projects">
+      <section class="tab-section" id="projects">
 
-    </section>
-  </main>
-  <footer></footer>
+      </section>
+    </main>
+    <footer></footer>
+  </div>
   <script src="js/projects.js" charset="utf-8"></script>
   <script src="js/script.js" charset="utf-8"></script>
 </body>
