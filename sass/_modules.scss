@@ -1,0 +1,18 @@
+//compileCompressed: ../style/style.css
+
+@import '_layout';
+
+@media only screen and (min-width: 640px) {
+  @include resize-text(3em, 2em, 1.6em, 0.8em);
+
+  .main-container {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .flex-block {
+
+  }
+}

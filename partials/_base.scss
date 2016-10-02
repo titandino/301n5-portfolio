@@ -1,18 +1,7 @@
-//main: modules.scss
+//main: _modules.scss
 
-@import 'normalize';
-
-$bg: #777;
-$primary: #295135;
-$secondary: #0D9263;
-$tertiary: #4ABA91;
-$font: #D4CE46;
-
-@font-face {
-  font-family: "Triforce";
-  src: url('../font/Triforce.eot');
-  src: url('../font/Triforce.ttf');
-}
+@import '_normalize';
+@import '_variables';
 
 h1 {
   font-family: "Triforce";
@@ -28,15 +17,23 @@ h2 {
   margin: 0;
 }
 
+h3 {
+  font-family: "Triforce";
+  font-weight: normal;
+  margin: 0;
+  font-size: 1.6em;
+}
+
 body {
   background-color: $bg;
   width: 100%;
   height: 100%;
+  font-size: 0.8em;
 }
 
 .main-container {
   background-color: $primary;
-  padding: 0.5em;
+  padding: 0.5rem;
   box-shadow: 3px 3px 3px 3px;
 }
 

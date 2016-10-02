@@ -20,7 +20,6 @@ renderer.initSkillsLists = function() {
 
 renderer.initProjectFlips = function() {
   $('#projects').on('click', '.proj-body-container', function() {
-    console.log('meme');
     $(this).find('.project-body').toggle();
     $(this).find('img').toggle();
   });

@@ -1,0 +1,19 @@
+//main: _modules.scss
+
+@mixin resize-text($h1, $h2, $h3, $body) {
+  h1 {
+    font-size: $h1;
+  }
+
+  h2 {
+    font-size: $h2;
+  }
+
+  h3 {
+    font-size: $h3;
+  }
+
+  body {
+    font-size: $body;
+  }
+}
