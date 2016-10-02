@@ -8,7 +8,7 @@ renderer.initNav = function() {
     $('.tab-section').hide();
     $('#' + $(this).data('tab')).fadeIn(500);
   });
-  $('.section-toggle:last').trigger('click');
+  $('.section-toggle:first').trigger('click');
 };
 
 renderer.initSkillsLists = function() {
