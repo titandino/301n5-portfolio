@@ -8,7 +8,7 @@ renderer.initNav = function() {
     $('.tab-section').hide();
     $('#' + $(this).data('tab')).fadeIn(500);
   });
-  $('.section-toggle:first').trigger('click');
+  $('.section-toggle:last').trigger('click');
 };
 
 renderer.initSkillsLists = function() {
@@ -19,7 +19,8 @@ renderer.initSkillsLists = function() {
 };
 
 renderer.initProjectFlips = function() {
-  $('.proj-body-container').on('click', function() {
+  $('#projects').on('click', '.proj-body-container', function() {
+    console.log('meme');
     $(this).find('.project-body').toggle();
     $(this).find('img').toggle();
   });
