@@ -3,9 +3,9 @@
 @import 'normalize';
 
 $bg: #777;
-$tertiary: #295135;
+$primary: #295135;
 $secondary: #0D9263;
-$primary: #4ABA91;
+$tertiary: #4ABA91;
 $font: #D4CE46;
 
 body {
@@ -23,7 +23,6 @@ body {
 nav {
   ul {
     background-color: $secondary;
-    box-shadow: 1px 1px 1px 1px;
     list-style: none;
     padding: 0;
   }

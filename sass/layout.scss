@@ -7,8 +7,7 @@
 }
 
 .skills-list ul {
-  background-color: $secondary;
-  box-shadow: 1px 1px 1px 1px;
+  background-color: $tertiary;
   list-style: none;
   padding: 0;
 
@@ -17,8 +16,9 @@
   }
 }
 
-.summary-block {
-
+.box-shad {
+  background-color: $secondary;
+  box-shadow: 1px 1px 1px 1px;
 }
 
 .project-block {
