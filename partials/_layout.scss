@@ -3,24 +3,36 @@
 @import '_base';
 
 .skills-list ul {
-  background-color: $tertiary;
   list-style: none;
   padding: 0;
+
+  a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+  }
 
   li {
     display: none;
   }
 }
 
-.flex-block, nav, h1 {
-  padding: 0.5rem 1rem;
-  margin: 1rem 1rem;
+.flex-block {
+  padding: 1%;
+  margin: 0.5%;
+  width: 100%;
+  flex-flow: row;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
 }
 
 .hr {
-  height: 0.3rem;
+  height: 0.2rem;
   background-color: $primary;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
 }
 
 .project-heading {
@@ -42,15 +54,6 @@
   box-shadow: 1px 1px 1px 1px;
 }
 
-.flex-block {
-  flex-flow: row;
-
-  img {
-    width: 100%;
-    height: auto;
-  }
-}
-
 .tab-section {
   display: flex;
   align-content: flex-start;
@@ -58,7 +61,7 @@
 }
 
 .proj-body-container {
-  width: 100%;
+
 }
 
 .project-body {

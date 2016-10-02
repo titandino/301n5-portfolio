@@ -3,21 +3,7 @@
 @import '_layout';
 
 @media only screen and (min-width: 640px) {
-  h1 {
-    font-size: 3em;
-  }
-
-  h2 {
-    font-size: 2em;
-  }
-
-  h3 {
-    font-size: 1.6em;
-  }
-
-  body {
-    font-size: 0.8em;
-  }
+  @include resize-text(4em, 3em, 2.1em, 1em);
 
   .main-container {
     width: 90%;
@@ -25,8 +11,8 @@
   }
 }
 
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 1000px) {
   .flex-block {
-
+    width: 47%;
   }
 }

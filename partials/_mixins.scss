@@ -17,3 +17,10 @@
     font-size: $body;
   }
 }
+
+@mixin triforcify($size) {
+  font-family: "Triforce";
+  font-weight: normal;
+  font-size: $size;
+  margin: 0;
+}
