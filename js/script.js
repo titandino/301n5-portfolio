@@ -13,15 +13,28 @@ renderer.initNav = function() {
 
 renderer.initSkillsLists = function() {
   $('.skills-list').on('click', 'ul', function(e) {
+    var target = $(this);
     e.preventDefault();
-    $(this).find('li').toggle(300);
+    $('.skills-list ul > li').each(function() {
+      if ($(this).is(':visible') && $(this).parent().text() != target.text()) {
+        $(this).toggle(400);
+      }
+    });
+    target.find('li').toggle(400);
   });
 };
 
 renderer.initProjectFlips = function() {
   $('#projects').on('click', '.proj-body-container', function() {
-    $(this).find('.project-body').toggle();
-    $(this).find('img').toggle();
+    var target = $(this);
+    $('.proj-body-container').each(function() {
+      if ($(this).find('.proj-back').is(':visible') && $(this).text() != target.text()) {
+        $(this).find('.proj-front').toggle(400);
+        $(this).find('.proj-back').toggle(400);
+      }
+    });
+    target.find('.proj-front').toggle(400);
+    target.find('.proj-back').toggle(400);
   });
 };
 

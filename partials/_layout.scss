@@ -61,9 +61,15 @@
 }
 
 .proj-body-container {
-
+  perspective: 1000px;
+  transition: 0.6s;
+	transform-style: preserve-3d;
 }
 
-.project-body {
+.proj-front {
+  
+}
+
+.proj-back {
   display: none;
 }
