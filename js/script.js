@@ -41,8 +41,8 @@ renderer.initProjectFlips = function() {
   });
 };
 
-renderer.initLoadMore = function() {
-  $('#load-more').on('click', function() {
+renderer.initShowMore = function() {
+  $('#show-more').on('click', function() {
     renderer.loadProjects(4);
   });
 };
@@ -65,6 +65,6 @@ $(function() {
   renderer.initNav();
   renderer.initSkillsLists();
   renderer.initProjectFlips();
-  renderer.initLoadMore();
+  renderer.initShowMore();
   renderer.loadProjects(4);
 });
