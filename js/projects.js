@@ -13,16 +13,6 @@ function Project(data) {
 
 Project.prototype.render = function() {
   var template = Handlebars.compile($('#project-template').html());
-  $('#projects').append(template(this));
+  $('.project-display').append(template(this));
+  return this;
 };
-
-$(function() {
-  $.getJSON('ajax/projects.json', function(data) {
-    console.log(data);
-    for(var i = 0;i < data.length;i++) {
-      new Project(data[i]).render();
-    }
-  }).fail(function() {
-    console.log('Error loading projects file.');
-  });
-});

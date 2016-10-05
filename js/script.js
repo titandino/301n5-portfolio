@@ -1,6 +1,9 @@
 'use strict';
 
-var renderer = { };
+var renderer = {
+  projects: [],
+  projectsLoaded: 0,
+};
 
 renderer.initNav = function() {
   $('.section-toggle').on('click', function(e) {
@@ -38,8 +41,30 @@ renderer.initProjectFlips = function() {
   });
 };
 
+renderer.initLoadMore = function() {
+  $('#load-more').on('click', function() {
+    renderer.loadProjects(4);
+  });
+};
+
+renderer.loadProjects = function(amount) {
+  $.getJSON('ajax/projects.json', function(data) {
+    for(var i = 0;i < amount;i++) {
+      if ((renderer.projectsLoaded + i) >= data.length)
+        continue;
+      renderer.projects[renderer.projectsLoaded + i] = new Project(data[renderer.projectsLoaded + i]).render();
+      console.log('Project loaded:', renderer.projectsLoaded + i);
+    }
+    renderer.projectsLoaded += amount;
+  }).fail(function() {
+    console.log('Error loading projects file.');
+  });
+};
+
 $(function() {
   renderer.initNav();
   renderer.initSkillsLists();
   renderer.initProjectFlips();
+  renderer.initLoadMore();
+  renderer.loadProjects(4);
 });
