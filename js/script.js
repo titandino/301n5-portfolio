@@ -63,18 +63,36 @@
     });
   };
 
-  function loadProjects(amount) {
-    $.getJSON('ajax/projects.json', function(data) {
-      for(var i = 0;i < amount;i++) {
-        if ((numLoaded + i) >= data.length)
-          continue;
-        projects[numLoaded + i] = new Project(data[numLoaded + i]).render();
-        console.log('Project loaded:', numLoaded + i);
+  function preloadProjects() {
+    if (localStorage.projects) {
+      var localProjects = JSON.parse(localStorage.projects);
+      for(var i = 0;i < localProjects.length;i++) {
+        projects[i] = new Project(localProjects[i]);
+        console.log('Project loaded:', i);
       }
-      numLoaded += amount;
-    }).fail(function() {
-      console.log('Error loading projects file.');
-    });
+      loadProjects(4);
+    } else {
+      $.getJSON('ajax/projects.json', function(data) {
+        for(var i = 0;i < data.length;i++) {
+          projects[i] = new Project(data[i]);
+          console.log('Project loaded:', i);
+        }
+      }).fail(function() {
+        console.log('Error loading projects file.');
+      }).success(function() {
+        localStorage.projects = JSON.stringify(projects);
+        loadProjects(4);
+      });
+    }
+  }
+
+  function loadProjects(amount) {
+    for(var i = 0;i < amount;i++) {
+      if ((numLoaded + i) >= projects.length)
+        continue;
+      projects[numLoaded + i].render();
+    }
+    numLoaded += amount;
   };
 
   $(function() {
@@ -82,6 +100,6 @@
     initSkillsLists();
     initProjectFlips();
     initShowMore();
-    loadProjects(4);
+    preloadProjects();
   });
 })();
