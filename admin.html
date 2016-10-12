@@ -48,8 +48,8 @@
           <h3>Login</h3>
           <form class="form-login" action="#" method="post">
             <label>
-              <input type="text" name="username" required  placeholder="Username">
-              <input type="password" name="password" required  placeholder="Password">
+              <input type="text" name="username" required placeholder="Username">
+              <input type="password" name="password" required placeholder="Password">
             </label>
             <button type="submit" name="submit" value="Login">Login</button>
           </form>
@@ -61,15 +61,20 @@
           <h3>Add Project</h3>
           <form class="form-add-project" action="#" method="post">
             <label>
-              <input type="text" name="name"  placeholder="Project name">
-              <input type="text" name="role"  placeholder="Role">
-              <input type="text" name="shortDesc"  placeholder="Short description">
-              <input type="text" name="date"  placeholder="Date">
-              <input type="textarea" name="desc"  placeholder="Description">
-              <input type="text" name="img"  placeholder="Image link">
+              <input type="text" name="name" required placeholder="Project name">
+              <input type="text" name="role" required placeholder="Role">
+              <input type="text" name="shortDesc" required placeholder="Short description">
+              <input type="text" name="date" required placeholder="Date">
+              <input type="textarea" name="desc" rows="4" cols="50" required placeholder="Description">
+              <input type="text" name="img" required placeholder="Image link">
+              <input type="text" name="type" required placeholder="Type">
             </label>
-            <input type="button" name="submit" value="Submit">
+            <button type="submit" name="submit" value="Login">Add Project</button>
           </form>
+          <p class='add-result'></p>
+        </section>
+        <section class='project-preview'>
+
         </section>
       </section>
       <section class="admintab-section" id="edit-project">
@@ -77,19 +82,21 @@
           <h3>Edit Project</h3>
           <form class="form-edit-project" action="#" method="post">
             <label>
-              <input type="text" name="name"  placeholder="Project name">
-              <input type="text" name="role"  placeholder="Role">
-              <input type="text" name="shortDesc"  placeholder="Short description">
-              <input type="text" name="date"  placeholder="Date">
-              <input type="textarea" name="desc"  placeholder="Description">
-              <input type="text" name="img"  placeholder="Image link">
+              <input type="text" name="name" placeholder="Project name">
+              <input type="text" name="role" placeholder="Role">
+              <input type="text" name="shortDesc" placeholder="Short description">
+              <input type="text" name="date" placeholder="Date">
+              <input type="textarea" name="desc" placeholder="Description">
+              <input type="text" name="img" placeholder="Image link">
+              <input type="text" name="type" placeholder="Type">
             </label>
-            <input type="button" name="submit" value="Submit">
+            <button type="submit" name="submit" value="Login">Finalize Edits</button>
           </form>
         </section>
-      </section>
-      <section class="project-preview" id="projects">
+        <section class="project-preview" id="projects">
 
+        </section>
+      </section>
       </section>
     </main>
     <footer></footer>
