@@ -1,13 +1,13 @@
 'use strict';
 
-(function() {
+(function(ctx) {
   var numLoaded = 0;
-  var projects = [];
+  Project.projects = [];
 
   function Project(data) {
     if (typeof data === 'object') {
       console.log('Parsing object fields.');
-      for (var field in data) {
+      for (let field in data) {
         this[field] = data[field];
       }
     } else {
@@ -16,7 +16,7 @@
   }
 
   Project.prototype.render = function() {
-    var template = Handlebars.compile($('#project-template').html());
+    let template = Handlebars.compile($('#project-template').html());
     $('.project-display').append(template(this));
     return this;
   };
@@ -58,39 +58,25 @@
   };
 
   function initShowMore() {
-    $('#show-more').on('click', function() {
-      loadProjects(4);
-    });
+    $('#show-more').on('click', () => loadProjects(4));
   };
 
   function preloadProjects() {
-    if (localStorage.projects) {
-      var localProjects = JSON.parse(localStorage.projects);
-      for(var i = 0;i < localProjects.length;i++) {
-        projects[i] = new Project(localProjects[i]);
+    $.getJSON('http://localhost/api/projects', function(data) {
+      for(let i = 0;i < data.length;i++) {
+        Project.projects[i] = new Project(data[i]);
         console.log('Project loaded:', i);
       }
-      loadProjects(4);
-    } else {
-      $.getJSON('http://localhost/api/projects', function(data) {
-        for(var i = 0;i < data.length;i++) {
-          projects[i] = new Project(data[i]);
-          console.log('Project loaded:', i);
-        }
-      }).fail(function() {
-        console.log('Error loading projects file.');
-      }).success(function() {
-        localStorage.projects = JSON.stringify(projects);
-        loadProjects(4);
-      });
-    }
+    }).fail(function() {
+      console.log('Error loading projects file.');
+    }).success(() => loadProjects(4));
   }
 
   function loadProjects(amount) {
-    for(var i = 0;i < amount;i++) {
-      if ((numLoaded + i) >= projects.length)
+    for(let i = 0;i < amount;i++) {
+      if ((numLoaded + i) >= Project.projects.length)
         continue;
-      projects[numLoaded + i].render();
+      Project.projects[numLoaded + i].render();
     }
     numLoaded += amount;
   };
@@ -102,4 +88,6 @@
     initShowMore();
     preloadProjects();
   });
-})();
+
+  ctx.Project = Project;
+})(window);
