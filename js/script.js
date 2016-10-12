@@ -72,7 +72,7 @@
       }
       loadProjects(4);
     } else {
-      $.getJSON('ajax/projects.json', function(data) {
+      $.getJSON('http://trentonkress.com/api/projects', function(data) {
         for(var i = 0;i < data.length;i++) {
           projects[i] = new Project(data[i]);
           console.log('Project loaded:', i);
