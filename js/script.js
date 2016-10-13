@@ -62,7 +62,7 @@
   };
 
   function preloadProjects() {
-    $.getJSON('http://localhost/api/projects', function(data) {
+    $.getJSON('http://api.trentonkress.com/api/projects', function(data) {
       for(let i = 0;i < data.length;i++) {
         Project.projects[i] = new Project(data[i]);
         console.log('Project loaded:', i);

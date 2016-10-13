@@ -13,7 +13,7 @@
       $('.form-login').attr('disabled', true);
       e.preventDefault();
       let data = $(this).serialize();
-      $.post('http://localhost/api/login', data, function(res) {
+      $.post('http://api.trentonkress.com/api/login', data, function(res) {
         if (res) {
           if (res.success) {
             localStorage.access_token = res.token;
@@ -45,7 +45,7 @@
 
       $.ajax({
         type: 'POST',
-        url: 'http://localhost/api/projects',
+        url: 'http://api.trentonkress.com/api/projects',
         data: 'token=' + localStorage.access_token + '&' + data,
         success: function(msg) {
           if (msg.includes('Successfully'))
