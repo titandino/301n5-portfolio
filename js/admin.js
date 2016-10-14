@@ -4,8 +4,16 @@
 
   let template = Handlebars.compile($('#project-template').html());
 
-  function loggedIn() {
-    return localStorage.access_token && parseInt(localStorage.token_expiry) > Date.now();
+  function isLoggedIn() {
+    if (localStorage.access_token) {
+      $.ajaxSetup({
+        headers: {
+          'x-access-token': localStorage.access_token
+        }
+      });
+      return true;
+    }
+    return false;
   }
 
   function initLoginForm() {
@@ -46,7 +54,7 @@
       $.ajax({
         type: 'POST',
         url: 'http://api.trentonkress.com/api/projects',
-        data: 'token=' + localStorage.access_token + '&' + data,
+        data: data,
         success: function(msg) {
           if (msg.includes('Successfully'))
             $('.form-add-project').trigger('reset');
@@ -56,8 +64,8 @@
       });
     });
     $('.form-add-project').on('change', function() {
-      $('.project-preview').empty();
-      $('.project-preview').append(template(formToJSON($(this))));
+      $('.add-project-preview').empty();
+      $('.add-project-preview').append(template(formToJSON($(this))));
     });
     initProjectFlips();
   }
@@ -70,8 +78,63 @@
     return data;
   }
 
-  function initEditForm() {
+  function deleteProject() {
+    let id = $('.form-edit-project input:first-child').val();
+    console.log(formToJSON($('.form-edit-project')));
+    if (id) {
+      if (confirm('Are you sure you want to delete this project?')) {
+        $.ajax({
+          type: 'DELETE',
+          url: 'http://api.trentonkress.com/api/projects',
+          data: { projId:id },
+          success: function(msg) {
+            if (msg.includes('Successfully'))
+              $('.form-edit-project').trigger('reset');
+            $(this).attr('disabled', false);
+            $('.form-edit-project').attr('disabled', false);
+            $('.edit-result').text(msg);
+          }
+        });
+      }
+    } else {
+      $('.edit-result').text('No project selected to delete.');
+    }
+  }
 
+  function initEditForm() {
+    $('#deleteButton').on('click', function() {
+      console.log('deleteing');
+      deleteProject();
+    });
+    $('.form-edit-project').on('submit', function(e) {
+      e.preventDefault();
+      $('.form-edit-project').attr('disabled', true);
+
+      let data = formToJSON($(this));
+      data._id = $('.form-edit-project input:first-child').val();
+
+      $.ajax({
+        type: 'PUT',
+        url: 'http://api.trentonkress.com/api/projects',
+        data: data,
+        success: function(msg) {
+          if (msg.includes('Successfully'))
+            $('.form-edit-project').trigger('reset');
+          $('.form-edit-project').attr('disabled', false);
+          $('.edit-result').text(msg);
+        }
+      });
+    });
+    $('.edit-selection').on('change', function() {
+      var project = Project.projects[$(this).find('option:selected').data('idx')];
+      for (let key in project) {
+        if (project.hasOwnProperty(key))
+          $('.form-edit-project input[name=' + key + ']').val(project[key]);
+      }
+      $('.form-edit-project input[name=projId]').val(project._id);
+      $('.edit-project-preview').empty();
+      $('.edit-project-preview').append(template(formToJSON($('.form-edit-project'))));
+    });
   }
 
   function initNavTabs() {
@@ -110,7 +173,7 @@
   }
 
   function checkLogin() {
-    if (loggedIn()) {
+    if (isLoggedIn()) {
       initAdminPage();
     } else {
       displayLogin();

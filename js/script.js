@@ -65,6 +65,7 @@
     $.getJSON('http://api.trentonkress.com/api/projects', function(data) {
       for(let i = 0;i < data.length;i++) {
         Project.projects[i] = new Project(data[i]);
+        $('.edit-selection').append('<option data-idx=' + i + '>' + Project.projects[i].name + '</option>');
         console.log('Project loaded:', i);
       }
     }).fail(function() {
