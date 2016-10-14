@@ -5,15 +5,31 @@
   let template = Handlebars.compile($('#project-template').html());
 
   function isLoggedIn() {
-    if (localStorage.access_token) {
-      $.ajaxSetup({
-        headers: {
-          'x-access-token': localStorage.access_token
-        }
-      });
+    if (localStorage.access_token && parseInt(localStorage.token_expiry) > Date.now()) {
       return true;
     }
     return false;
+  }
+
+  function addToken(dater) {
+    if (typeof dater == 'string') {
+      dater += '&token=' + localStorage.access_token;
+    } else if (typeof dater == 'object') {
+      dater.token = localStorage.access_token;
+    }
+    return dater;
+  }
+
+  let refreshOptions = function() {
+    $('.edit-selection').first().siblings().remove();
+    for (let i = 0;i < Project.projects.length;i++) {
+      $('.edit-selection').append('<option data-idx=' + i + '>' + Project.projects[i].name + '</option>');
+    }
+  };
+
+  function refreshProjects() {
+    //Project.preloadProjects(refreshOptions);
+    document.location.reload(false); //temporary until I can clean the hell out of this admin.js mess
   }
 
   function initLoginForm() {
@@ -26,6 +42,7 @@
           if (res.success) {
             localStorage.access_token = res.token;
             localStorage.token_expiry = res.expiresIn;
+            console.log(localStorage.access_token);
             initNavTabs();
           } else {
             displayLoginResult(res.message);
@@ -49,15 +66,17 @@
       e.preventDefault();
       $('.form-add-project').attr('disabled', true);
 
-      let data = $(this).serialize();
+      let data = formToJSON($(this));
 
       $.ajax({
         type: 'POST',
         url: 'http://api.trentonkress.com/api/projects',
-        data: data,
+        data: addToken(data),
         success: function(msg) {
-          if (msg.includes('Successfully'))
+          if (msg.includes('Successfully')) {
             $('.form-add-project').trigger('reset');
+            refreshProjects();
+          }
           $('.form-add-project').attr('disabled', true);
           $('.add-result').text(msg);
         }
@@ -67,7 +86,6 @@
       $('.add-project-preview').empty();
       $('.add-project-preview').append(template(formToJSON($(this))));
     });
-    initProjectFlips();
   }
 
   function formToJSON(form) {
@@ -80,17 +98,19 @@
 
   function deleteProject() {
     let id = $('.form-edit-project input:first-child').val();
-    console.log(formToJSON($('.form-edit-project')));
     if (id) {
+      let data = { action: 'delete', projId:id }; //Jquery doesn't support delete with chrome or something stupid? Use this aids workaround for now I guess
       if (confirm('Are you sure you want to delete this project?')) {
         $.ajax({
-          type: 'DELETE',
+          type: 'POST',
           url: 'http://api.trentonkress.com/api/projects',
-          data: { projId:id },
+          data: addToken(data),
           success: function(msg) {
-            if (msg.includes('Successfully'))
+            if (msg.includes('Successfully')) {
               $('.form-edit-project').trigger('reset');
-            $(this).attr('disabled', false);
+              refreshProjects();
+            }
+            $('#deleteButton').attr('disabled', false);
             $('.form-edit-project').attr('disabled', false);
             $('.edit-result').text(msg);
           }
@@ -103,7 +123,6 @@
 
   function initEditForm() {
     $('#deleteButton').on('click', function() {
-      console.log('deleteing');
       deleteProject();
     });
     $('.form-edit-project').on('submit', function(e) {
@@ -112,14 +131,17 @@
 
       let data = formToJSON($(this));
       data._id = $('.form-edit-project input:first-child').val();
+      data.action = 'edit'; //have to do another cancer work around because apparently PUT isn't supported by jquery for cors
 
       $.ajax({
-        type: 'PUT',
+        type: 'POST',
         url: 'http://api.trentonkress.com/api/projects',
-        data: data,
+        data: addToken(data),
         success: function(msg) {
-          if (msg.includes('Successfully'))
+          if (msg.includes('Successfully')) {
             $('.form-edit-project').trigger('reset');
+            refreshProjects();
+          }
           $('.form-edit-project').attr('disabled', false);
           $('.edit-result').text(msg);
         }
@@ -144,20 +166,6 @@
       $('#' + $(this).data('tab')).fadeIn(500);
     });
     $('.section-toggle:first').trigger('click');
-  }
-
-  function initProjectFlips() {
-    $('.project-preview').on('click', '.proj-body-container', function() {
-      var target = $(this);
-      $('.proj-body-container').each(function() {
-        if ($(this).find('.proj-back').is(':visible') && $(this).text() != target.text()) {
-          $(this).find('.proj-front').toggle(400);
-          $(this).find('.proj-back').toggle(400);
-        }
-      });
-      target.find('.proj-front').toggle(400);
-      target.find('.proj-back').toggle(400);
-    });
   }
 
   function displayLogin() {
