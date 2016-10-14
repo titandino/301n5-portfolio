@@ -61,39 +61,72 @@
           <h3>Add Project</h3>
           <form class="form-add-project" action="#" method="post">
             <label>
-              <input type="text" name="name" required placeholder="Project name">
-              <input type="text" name="role" required placeholder="Role">
-              <input type="text" name="shortDesc" required placeholder="Short description">
-              <input type="text" name="date" required placeholder="Date">
-              <input type="textarea" name="desc" rows="4" cols="50" required placeholder="Description">
-              <input type="text" name="img" required placeholder="Image link">
-              <input type="text" name="type" required placeholder="Type">
+              <input type="text" name="name" placeholder="Project name">
+            </label>
+            <label>
+              <input type="text" name="role" placeholder="Role">
+            </label>
+            <label>
+              <input type="text" name="shortDesc" placeholder="Short description">
+            </label>
+            <label>
+              <input type="text" name="date" placeholder="Date">
+            </label>
+            <label>
+              <input type="textarea" name="desc" placeholder="Description">
+            </label>
+            <label>
+              <input type="text" name="img" placeholder="Image link">
+            </label>
+            <label>
+              <input type="text" name="type" placeholder="Type">
             </label>
             <button type="submit" name="submit" value="Login">Add Project</button>
           </form>
           <p class='add-result'></p>
         </section>
-        <section class='project-preview'>
+        <section class='add-project-preview'>
 
         </section>
       </section>
       <section class="admintab-section" id="edit-project">
         <section class="box-shad">
           <h3>Edit Project</h3>
+          <select class="edit-selection">
+            <option selected disabled hidden>Choose Project</option>
+          </select>
           <form class="form-edit-project" action="#" method="post">
             <label>
+              Project ID:
+              <input type="text" disabled name="projId">
+            </label>
+            <label>
               <input type="text" name="name" placeholder="Project name">
+            </label>
+            <label>
               <input type="text" name="role" placeholder="Role">
+            </label>
+            <label>
               <input type="text" name="shortDesc" placeholder="Short description">
+            </label>
+            <label>
               <input type="text" name="date" placeholder="Date">
+            </label>
+            <label>
               <input type="textarea" name="desc" placeholder="Description">
+            </label>
+            <label>
               <input type="text" name="img" placeholder="Image link">
+            </label>
+            <label>
               <input type="text" name="type" placeholder="Type">
             </label>
-            <button type="submit" name="submit" value="Login">Finalize Edits</button>
+            <button type="submit" name="submit" value="">Finalize Edits</button>
+            <button type="button" id="deleteButton" value="">Delete Project</button>
           </form>
+          <p class='edit-result'></p>
         </section>
-        <section class="project-preview" id="projects">
+        <section class="edit-project-preview" id="projects">
 
         </section>
       </section>

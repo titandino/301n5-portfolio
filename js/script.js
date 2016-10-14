@@ -61,16 +61,21 @@
     $('#show-more').on('click', () => loadProjects(4));
   };
 
-  function preloadProjects() {
+  Project.preloadProjects = function(callback) {
+    Project.projects = [];
     $.getJSON('http://api.trentonkress.com/api/projects', function(data) {
       for(let i = 0;i < data.length;i++) {
         Project.projects[i] = new Project(data[i]);
+        $('.edit-selection').append('<option data-idx=' + i + '>' + Project.projects[i].name + '</option>');
         console.log('Project loaded:', i);
       }
     }).fail(function() {
       console.log('Error loading projects file.');
-    }).success(() => loadProjects(4));
-  }
+    }).success(function() {
+      if (callback)
+        callback(4);
+    });
+  };
 
   function loadProjects(amount) {
     for(let i = 0;i < amount;i++) {
@@ -86,7 +91,7 @@
     initSkillsLists();
     initProjectFlips();
     initShowMore();
-    preloadProjects();
+    Project.preloadProjects(loadProjects);
   });
 
   ctx.Project = Project;
