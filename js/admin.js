@@ -99,22 +99,30 @@
   function deleteProject() {
     let id = $('.form-edit-project input:first-child').val();
     if (id) {
-      let data = { action: 'delete', projId:id }; //Jquery doesn't support delete with chrome or something stupid? Use this aids workaround for now I guess
+      let data = { projId:id };
       if (confirm('Are you sure you want to delete this project?')) {
-        $.ajax({
-          type: 'POST',
-          url: 'http://api.trentonkress.com/api/projects',
-          data: addToken(data),
-          success: function(msg) {
-            if (msg.includes('Successfully')) {
-              $('.form-edit-project').trigger('reset');
-              refreshProjects();
-            }
+        ajax('DELETE', 'http://api.trentonkress.com/api/projects', addToken(data), function(response) {
+          if (response.includes('Successfully')) {
+            $('.form-edit-project').trigger('reset');
             $('#deleteButton').attr('disabled', false);
             $('.form-edit-project').attr('disabled', false);
             $('.edit-result').text(msg);
           }
         });
+        // $.ajax({
+        //   type: 'POST',
+        //   url: 'http://api.trentonkress.com/api/projects',
+        //   data: addToken(data),
+        //   success: function(msg) {
+        //     if (msg.includes('Successfully')) {
+        //       $('.form-edit-project').trigger('reset');
+        //       refreshProjects();
+        //     }
+        //     $('#deleteButton').attr('disabled', false);
+        //     $('.form-edit-project').attr('disabled', false);
+        //     $('.edit-result').text(msg);
+        //   }
+        // });
       }
     } else {
       $('.edit-result').text('No project selected to delete.');
@@ -131,21 +139,30 @@
 
       let data = formToJSON($(this));
       data._id = $('.form-edit-project input:first-child').val();
-      data.action = 'edit'; //have to do another cancer work around because apparently PUT isn't supported by jquery for cors
+      //data.action = 'edit'; //have to do another cancer work around because apparently PUT isn't supported by jquery for cors
 
-      $.ajax({
-        type: 'POST',
-        url: 'http://api.trentonkress.com/api/projects',
-        data: addToken(data),
-        success: function(msg) {
-          if (msg.includes('Successfully')) {
-            $('.form-edit-project').trigger('reset');
-            refreshProjects();
-          }
-          $('.form-edit-project').attr('disabled', false);
-          $('.edit-result').text(msg);
+      ajax('PUT', 'http://api.trentonkress.com/api/projects', addToken(data), function(response) {
+        if (response.includes('Successfully')) {
+          $('.form-edit-project').trigger('reset');
+          refreshProjects();
         }
+        $('.form-edit-project').attr('disabled', false);
+        $('.edit-result').text(response);
       });
+
+      // $.ajax({
+      //   type: 'POST',
+      //   url: 'http://api.trentonkress.com/api/projects',
+      //   data: addToken(data),
+      //   success: function(msg) {
+      //     if (msg.includes('Successfully')) {
+      //       $('.form-edit-project').trigger('reset');
+      //       refreshProjects();
+      //     }
+      //     $('.form-edit-project').attr('disabled', false);
+      //     $('.edit-result').text(msg);
+      //   }
+      // });
     });
     $('.edit-selection').on('change', function() {
       var project = Project.projects[$(this).find('option:selected').data('idx')];
@@ -172,6 +189,17 @@
     $('.admintab-section').hide();
     $('#login-section').show();
     initLoginForm();
+  }
+
+  function ajax(type, url, data, callback) {
+    let request = new XMLHttpRequest();
+    request.onreadystatechange = function() {
+      if (request.readyState == 4 || request.readyState == 200) {
+        callback(request.responseText);
+      }
+    };
+    request.open(type, url, true);
+    request.send(data);
   }
 
   function initAdminPage() {
